@@ -21,7 +21,11 @@ uint8_t mac[6];
     config->auto_connect                = 1;
     os_sprintf(config->ap_ssid,"%s",    WIFI_AP_SSID);
     os_sprintf(config->ap_password,"%s",WIFI_AP_PASSWORD);
-    config->ap_open			= 1;
+    if (os_strlen(WIFI_AP_PASSWORD) < 8) {
+        config->ap_open                 = 1;
+    } else {
+        config->ap_open                 = 0;
+    }
     config->ap_on			= 1;
     config->locked			= 0;
 
